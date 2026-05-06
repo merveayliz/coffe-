@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Poppins:wght@300;600&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+* { margin: 0;  padding: 0;  box-sizing: border-box; }
+
+
+body {
+    background-color: #343131; 
+    color: #f0f0f0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.8;
+    color: #d4a373;
+    text-shadow: 0 0 20px rgba(212, 163, 115, 0.2);
+}
+
+.location {
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    margin-top: 10px;
+    opacity: 0.7;
+}
+
+.cta-btn {
+    all: unset;
+    padding: 12px 40px;
+    border: 1px solid #d4a373;
+    color: #d4a373;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    margin-top: 30px;
+    pointer-events: auto; 
+}
+
+.cta-btn:hover {
+    background: #d4a373;
+    color: #0a0a0a;
+    box-shadow: 0 0 20px rgba(212, 163, 115, 0.4);
+}
+
+.webgl { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: -1; 
+}
+
+.section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.content {
+    background: rgba(255, 255, 255, 0.03); 
+    backdrop-filter: blur(10px); 
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 163, 115, 0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    max-width: 450px;
+}
+
+.left { 
+    align-self: center; 
+    margin-right: auto; 
+}
+
+.right {
+    align-self: center; 
+    margin-left: auto; 
+    text-align: right; 
+}
+
+.scroll-note { 
+    margin-top: 20px; 
+    font-size: 0.9rem; 
+    opacity: 0.6; 
+    animation: bounce 2s infinite; 
+}
+
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+
+
+p, .location, .scroll-note {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+body.stop-scroll { overflow: hidden; }
+
+.promo-badge {
+    background: #d4a373;
+    color: #000;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+.cta-btn {
+    position: relative;
+    z-index: 999 ; 
+    pointer-events: auto ;
+}
+
+.close-menu {
+    background-color: rgb(0, 0, 0);
+    color: #fb0606;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+}
+
+.close-menu:hover {
+    background: #5b3131ed;
+    color: white;
+    border-color: #ff4d4d;
+    transform: rotate(-3deg) scale(1.1);
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95); 
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto !important; 
+    display: block !important; 
+    -webkit-overflow-scrolling: touch; 
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-container {
+    width: 95%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 100px 20px 250px 20px !important; 
+    min-height: 100vh;
+}
+
+.menu-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    margin-bottom: 50px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.08); 
+    border: 1px solid rgba(212, 163, 115, 0.2); 
+    border-radius: 18px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background: rgba(212, 163, 115, 0.15);
+    border-color: #d4a373;
+    transform: translateX(10px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+
+.name {
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+}
+
+.price {
+    color: #d4a373 !important;
+    font-weight: 800;
+    font-size: 1.05rem;
+    white-space: nowrap; 
+}
+
+.item-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #d4a373;
+}
+
+.close-menu {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 77, 77, 0.2);
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 1001;
+    transition: 0.3s;
+}
+
+.close-menu:hover {
+    background: #ff4d4d;
+    color: white;
+    transform: rotate(-5deg) scale(1.1);
+}
+
+.promo-badge {
+    background: #d4a373;
+    color: #000;
+    padding: 6px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 25px;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+.menu-overlay::-webkit-scrollbar {
+    width: 6px;
+}
+.menu-overlay::-webkit-scrollbar-thumb {
+    background-color: #d4a373;
+    border-radius: 10px;
+}
+
+/* --- TELEFON VE TABLET UYUMLULUK (RESPONSIVE) --- */
+@media (max-width: 991px) {
+    /* 1. ANA SAYFA DÜZENİ: Yazıları merkeze çekiyoruz ki 3D obje arkada kalsın */
+    .section {
+        padding: 0 5%; /* Kenar boşluklarını daralttık */
+        justify-content: center; /* İçeriği yatayda ortaladık */
+    }
+
+    .content {
+        max-width: 100%; /* Kutunun genişliğini serbest bıraktık */
+        text-align: center; /* Metinleri ortaladık */
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .brand-name {
+        line-height: 1; /* Başlıklar birbirine girmesin */
+        margin-bottom: 15px;
+    }
+
+    /* 2. MENÜ ÜRÜNLERİ: Mobilde daha dar alanlarda düzgün durması için */
+    .menu-container {
+        width: 100%;
+        padding: 100px 30px 400px 30px !important; /* Üst ve alt boşlukları ayarladık */
+    }
+
+    .menu-item {
+        padding: 12px; /* İç boşluğu biraz kıstık */
+        gap: 10px;
+    }
+
+    .item-img {
+        width: 50px; /* Görseller mobilde biraz daha belirgin olsun */
+        height: 50px;
+    }
+
+    /* 3. METİN DÜZENİ: Mobilde isim ve fiyat alt alta binmesin diye flex-wrap aktif */
+    .item-info {
+        flex-direction: row; /* Yan yana tutmaya devam et */
+        justify-content: space-between;
+    }
+
+    .name {
+        font-size: 1rem; /* Yazı boyutunu hafif küçülttük */
+    }
+
+    .price {
+        font-size: 0.95rem;
+    }
+
+    /* 4. KAPAT BUTONU: Mobilde parmakla basması daha kolay olsun */
+    .close-menu {
+        top: 20px;
+        right: 20px;
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+
+    /* 5. 3D WEBGL AYARI: Mobilde performans için gerekirse yerini değiştirebilirsin */
+    .webgl {
+        opacity: 0.8; /* Yazıların okunabilirliği için objeyi biraz şeffaflaştırabilirsin */
+    }
+}

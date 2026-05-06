@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+ <head>
+     <meta charset="UTF-8">
+     <title>Coffee Lab </title>
+     <link rel="stylesheet" href="style.css">
+     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+ </head>
+ <body>
+
+     <canvas class="webgl"></canvas>
+ 
+     <main>
+ 
+          <section class="section hero">
+              <div class="content left">
+                  <h1 class="brand-name">COFFEE LAB</h1>
+                  <p class="location">📍 Kadıköy, İstanbul</p>
+                  <div class="scroll-note">Sayfayı Kaydır ↓</div>
+              </div>
+          </section>
+  
+          <section class="section menu">
+              <div class="content right">
+                  <h2 style="color:  #d4a373;"><big>Meşhur Karışımlar</big></h2>
+                  <p>Özel kavrulmuş çekirdekler ve %100 doğal aromalarla hazırlanan içeceklerimizi deneyin.</p>
+                  <button class="cta-btn">MENÜYÜ İNCELE</button>
+              </div>
+          </section>
+ 
+     </main>
+ 
+        <div id="menu-overlay" class="menu-overlay">
+               <div class="menu-container">
+             
+                <button class="close-menu">✕ KAPAT</button>
+             
+                <div class="promo-badge">%20 İNDİRİM - İlk Siparişe Özel!</div>
+        
+               <h2 class="menu-title">COFFEE LAB GÜNCEL MENÜ</h2>
+
+
+        <div class="menu-section">
+            <h3>☕ İmza Kahveler</h>
+            <div class="menu-grid">
+                   <div class="menu-item">
+                      <img src="img/espresso.jpg" alt="coffee" class="item-img">
+                      <div class="item-info">
+                          <span class="name">Espresso Single</span>
+                          <span class="price">95₺</span>
+                     </div>
+                  </div>
+
+                  <div class="menu-item"><img src="img/Cortado.jpg" class="item-img"><div class="item-info"><span class="name">Cortado</span><span class="price">120₺</span></div></div>
+                  <div class="menu-item"><img src="img/Flat White.jpg" class="item-img"><div class="item-info"><span class="name">Flat White</span><span class="price">145₺</span></div></di>
+                  <div class="menu-item"><img src="img/Latte Macchiato.jpg" class="item-img"><div class="item-info"><span class="name">Latte Macchiato</span><span class="price">160₺</span></div></div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>🍰 Tatlı Kaçamaklar</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="img/San Sebastian.jpg" alt="cake" class="item-img">
+                    <div class="item-info">
+                        <span class="name">San Sebastian</span>
+                        <span class="price">210₺</span>
+                    </div>
+                </div>
+                
+                <div class="menu-item"><img src="img/magnolya.jpg" class="item-img"><div class="item-info"><span class="name">Magnolia</span><span class="price">180₺</span></div></div>
+             </div>
+          </div>
+      </div>
+  </div>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+     <script src="script.js"></script>
+
+ </body>
+</html>
