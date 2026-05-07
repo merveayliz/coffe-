@@ -1,13 +1,8 @@
-// GSAP Eklentisini Kaydet: Sayfa kaydırma ve buton animasyonları için şart.
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * 1. THREE.JS TEMEL KURULUM
- */
 const scene = new THREE.Scene();
 const canvas = document.querySelector('.webgl');
 
-// IŞIKLAR: Bardağın ve tatlının hacimli görünmesini sağlar.
 const sunLight = new THREE.DirectionalLight(0xffffff, 2);
 sunLight.position.set(-5, 5, 5); 
 sunLight.castShadow = true;
@@ -16,16 +11,12 @@ scene.add(sunLight);
 const ambient = new THREE.AmbientLight(0xffffff, 0.6); 
 scene.add(ambient);
 
-/**
- * 2. MENÜ ELEMENTLERİ
- */
+
 const menuBtn = document.querySelector('.cta-btn');
 const menuOverlay = document.querySelector('#menu-overlay');
 const closeBtn = document.querySelector('.close-menu');
 
-/**
- * 3. BARDAK ÜZERİNE YAZI (CANVAS TEXTURE)
- */
+
 const canvasLabel = document.createElement('canvas');
 const context = canvasLabel.getContext('2d');
 canvasLabel.width = 512;
@@ -40,9 +31,7 @@ context.font = '30px Montserrat';
 context.fillText('coffee shop & roastery', 256, 180);
 const labelTexture = new THREE.CanvasTexture(canvasLabel);
 
-/**
- * 4. MATERYAL TANIMLAMALARI (Vites 6 Ayarları)
- */
+
 const cupMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.8 }); 
 const sleeveMaterial = new THREE.MeshStandardMaterial({ map: labelTexture, roughness: 1 }); 
 const lidMaterial = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.2 }); 
@@ -52,12 +41,11 @@ const beanMaterial = new THREE.MeshStandardMaterial({
     roughness: 0.2, 
     metalness: 0.3, 
 });
-/**
- * 5. BARDAK VE TATLI TASARIMI (GROUP)
- */
+
+
 const cupGroup = new THREE.Group();
 
-// Bardak Parçaları
+
 const cupBody = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.3, 1.2, 32), cupMaterial);
 cupGroup.add(cupBody);
 
@@ -73,7 +61,7 @@ const lidTop = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.52, 0.15, 32), 
 lidTop.position.y = 0.7;
 cupGroup.add(lidTop);
 
-// DUMAN
+
 const steamCount = 20;
 const steamGeometry = new THREE.BufferGeometry();
 const steamPositions = new Float32Array(steamCount * 3);
@@ -82,11 +70,11 @@ steamGeometry.setAttribute('position', new THREE.BufferAttribute(steamPositions,
 
 const steamMaterial = new THREE.PointsMaterial({ 
     color: 0xffffff, 
-    size: 0.15, // Biraz daha büyük ve yumuşak noktalar
+    size: 0.15, 
     transparent: true, 
-    opacity: 0.15, // Daha şeffaf, daha doğal
+    opacity: 0.15, 
     blending: THREE.AdditiveBlending,
-    depthWrite: false // Dumanın bardağın arkasında/önünde çirkin durmasını engeller
+    depthWrite: false 
 });
 
 const steam = new THREE.Points(steamGeometry, steamMaterial);
@@ -94,11 +82,11 @@ steam.position.y = 0.8;
 cupGroup.add(steam); 
 
 
-// --- VİTES 8: ULTRA-GERÇEKÇİ TATLI TASARIMI ---
-const dessertGroup = new THREE.Group();
-dessertGroup.position.set(0.9, -0.55, 0.4); // Hizalama milimetrik!
 
-// 1. Tabağa Porselen Parlaklığı (Derinlikli Tabak)
+const dessertGroup = new THREE.Group();
+dessertGroup.position.set(0.9, -0.55, 0.4);
+
+
 const plateBottom = new THREE.Mesh(
     new THREE.CylinderGeometry(0.6, 0.55, 0.05, 32), 
     new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1, metalness: 0.2 }) 
@@ -106,17 +94,15 @@ const plateBottom = new THREE.Mesh(
 dessertGroup.add(plateBottom);
 
 const plateRim = new THREE.Mesh(
-    new THREE.TorusGeometry(0.55, 0.04, 16, 100), // Tabağın o kavisli kenarı
+    new THREE.TorusGeometry(0.55, 0.04, 16, 100), 
     new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1 })
 );
 plateRim.rotation.x = Math.PI / 2;
 plateRim.position.y = 0.05;
 dessertGroup.add(plateRim);
 
-// 2. Kekin Kremamsı Gövdesi (Gerçekçi Doku)[cite: 11]
-// San Sebastian'ın o tam pişmemiş, yumuşak dokusu için roughness: 0.9 yaptık.
 const cakeInsideMat = new THREE.MeshStandardMaterial({ 
-    color: 0xfdf0d5, // Daha kremamsı bir bej[cite: 11]
+    color: 0xfdf0d5, 
     roughness: 0.9, 
     metalness: 0 
 });
@@ -125,11 +111,10 @@ cakeInside.position.y = 0.22;
 cakeInside.rotation.y = Math.PI / 4;
 dessertGroup.add(cakeInside);
 
-// 3. Kekin O Meşhur Yanık Üst Katmanı[cite: 11]
-// Üst kısmın hafif pürüzlü ve "karamelize" görünmesi için özel materyal:
+
 const cakeTopMat = new THREE.MeshStandardMaterial({ 
-    color: 0x2b1d0e, // Yanık kahverengi tonu
-    roughness: 0.6,   // Hafif ışık yansıtan "ıslak yanık" efekti
+    color: 0x2b1d0e, 
+    roughness: 0.6,  
     metalness: 0.1
 });
 const cakeTop = new THREE.Mesh(new THREE.CylinderGeometry(0.41, 0.41, 0.02, 3), cakeTopMat);
@@ -137,23 +122,19 @@ cakeTop.position.y = 0.37;
 cakeTop.rotation.y = Math.PI / 4;
 dessertGroup.add(cakeTop);
 
-// 4. SON DOKUNUŞ: Üzerine Çilek Ekleme (Estetik Detay)
 const strawberry = new THREE.Mesh(
     new THREE.SphereGeometry(0.06, 16, 16),
-    new THREE.MeshStandardMaterial({ color: 0xbf0603, roughness: 0.3 }) // Kırmızı canlı çilek
+    new THREE.MeshStandardMaterial({ color: 0xbf0603, roughness: 0.3 }) 
 );
-strawberry.scale.set(1, 1.3, 1); // Çileği hafifçe uzattık
-strawberry.position.set(0, 0.45, 0); // Kekin tam tepesinde
+strawberry.scale.set(1, 1.3, 1); 
+strawberry.position.set(0, 0.45, 0); 
 dessertGroup.add(strawberry);
 
-cupGroup.add(dessertGroup); // Ana gruba bağladık
+cupGroup.add(dessertGroup); 
 cupGroup.position.x = 2;
 scene.add(cupGroup);
 
-/**
- * 6. KAHVE ÇEKİRDEĞİ SİSTEMİ (200 Adet)
- */
-const beanGeometry = new THREE.SphereGeometry(0.04, 12, 12); // Segment sayısı artırılarak daha yuvarlak yapıldı.
+const beanGeometry = new THREE.SphereGeometry(0.04, 12, 12);
 beanGeometry.scale(1, 0.6, 1.2); 
 
 const coffeeBeans = new THREE.InstancedMesh(beanGeometry, beanMaterial, 200);
@@ -166,22 +147,20 @@ for (let i = 0; i < 200; i++) {
 }
 scene.add(coffeeBeans);
 
-/**
- * 7. KAMERA VE RENDERER
- */
+
+
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
 camera.position.z = 3;
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-/**
- * 8. GSAP ANİMASYONLARI
- */
+
+
 const introTl = gsap.timeline(); 
 introTl.to(".hero .content", { opacity: 1, y: 0, duration: 1.5 })
        .from(cupGroup.position, { x: 5, duration: 2 }, "-=1");
-// script.js içindeki scrollTl bloğunu bu şekilde güncelle
+
 const isMobile = window.innerWidth < 991;
 
 const scrollTl = gsap.timeline({
@@ -193,35 +172,33 @@ const scrollTl = gsap.timeline({
     }
 });
 
-// Mobilde bardak X:0 (Merkez) kalsın, sadece dönsün ve renk değiştirsin
+
 scrollTl.to(cupGroup.position, { 
-    x: isMobile ? 0 : -1.3, // Mobilde merkezde çakılı kalır
+    x: isMobile ? 0 : -1.3, 
     y: isMobile ? 0 : -0.1 
 }) 
 .to(cupGroup.rotation, { 
-    y: isMobile ? Math.PI * 6 : Math.PI * 1.4, // Mobilde daha hızlı ve çok döner
+    y: isMobile ? Math.PI * 6 : Math.PI * 1.4, 
     z: 0.02 
 }, 0) 
-.to(cupMaterial.color, { r: 0.23, g: 0.15, b: 0.1 }, 0); // Renk espresso tonuna döner
+.to(cupMaterial.color, { r: 0.23, g: 0.15, b: 0.1 }, 0); 
 
 scrollTl.to(cupGroup.position, { x: -1.3, y: -0.1 }) 
         .to(cupGroup.rotation, { 
             y: Math.PI * 1.4, 
-            z: 0.02 // Eğimi iyice azalttık, masa hissi için
+            z: 0.02 
         }, 0) 
         .to(cupMaterial.color, { r: 0.23, g: 0.15, b: 0.1 }, 0)
         .to(".menu .content", { opacity: 1, y: 0 }, 0.5);
 
-        
-/**
- * 9. ETKİLEŞİM VE DÖNGÜ
- */
+
+
 const animate = () => {
     const elapsedTime = Date.now() * 0.001;
     if(cupGroup) {
-        // Süzülme etkisi minimize edildi, artık daha ağır ve masada duruyor gibi.
+      
         cupGroup.position.y += Math.sin(elapsedTime) * 0.0002; 
-        cupGroup.rotation.y += 0.003; // Dönüş hızı yavaşlatıldı
+        cupGroup.rotation.y += 0.003; 
     }
     if(coffeeBeans) {
         coffeeBeans.rotation.y += 0.001;
@@ -240,15 +217,12 @@ const animate = () => {
 };
 animate();
 
-// BUTONLAR
 menuBtn.addEventListener('click', () => {
     document.body.classList.add('stop-scroll'); 
     gsap.to(camera.position, { z: 1.8, duration: 1.2 });
     
-    // Menüyü anında aktif et, donmayı engelle
     menuOverlay.classList.add('active'); 
     
-    // Ürünleri JS ile getirmek yerine CSS'e bırakıyoruz ama yumuşaklık istersen:
     gsap.fromTo(".menu-item", 
         { opacity: 0, y: 20 }, 
         { opacity: 1, y: 0, stagger: 0.05, duration: 0.3, delay: 0.2 }
