@@ -272,57 +272,52 @@ body.stop-scroll { overflow: hidden; }
     border-radius: 10px;
 }
 
-/* --- TELEFON VE TABLET UYUMLULUK (RESPONSIVE) --- */
 @media (max-width: 991px) {
-    /* 1. ANA SAYFA DÜZENİ: Yazıları merkeze çekiyoruz ki 3D obje arkada kalsın */
     .section {
-        padding: 0 5%; /* Kenar boşluklarını daralttık */
-        justify-content: center; /* İçeriği yatayda ortaladık */
+        padding: 0 5%; 
+        justify-content: center; 
     }
 
     .content {
-        max-width: 100%; /* Kutunun genişliğini serbest bıraktık */
-        text-align: center; /* Metinleri ortaladık */
+        max-width: 100%;
+        text-align: center; 
         margin: 0 auto;
         padding: 20px;
     }
 
     .brand-name {
-        line-height: 1; /* Başlıklar birbirine girmesin */
+        line-height: 1; 
         margin-bottom: 15px;
     }
 
-    /* 2. MENÜ ÜRÜNLERİ: Mobilde daha dar alanlarda düzgün durması için */
     .menu-container {
         width: 100%;
-        padding: 100px 30px 400px 30px !important; /* Üst ve alt boşlukları ayarladık */
+        padding: 100px 30px 400px 30px !important;
     }
 
     .menu-item {
-        padding: 12px; /* İç boşluğu biraz kıstık */
+        padding: 12px;
         gap: 10px;
     }
 
     .item-img {
-        width: 50px; /* Görseller mobilde biraz daha belirgin olsun */
+        width: 50px; 
         height: 50px;
     }
 
-    /* 3. METİN DÜZENİ: Mobilde isim ve fiyat alt alta binmesin diye flex-wrap aktif */
     .item-info {
-        flex-direction: row; /* Yan yana tutmaya devam et */
+        flex-direction: row; 
         justify-content: space-between;
     }
 
     .name {
-        font-size: 1rem; /* Yazı boyutunu hafif küçülttük */
+        font-size: 1rem; 
     }
 
     .price {
         font-size: 0.95rem;
     }
 
-    /* 4. KAPAT BUTONU: Mobilde parmakla basması daha kolay olsun */
     .close-menu {
         top: 20px;
         right: 20px;
@@ -330,8 +325,7 @@ body.stop-scroll { overflow: hidden; }
         font-size: 0.9rem;
     }
 
-    /* 5. 3D WEBGL AYARI: Mobilde performans için gerekirse yerini değiştirebilirsin */
     .webgl {
-        opacity: 0.8; /* Yazıların okunabilirliği için objeyi biraz şeffaflaştırabilirsin */
+        opacity: 0.8; 
     }
 }
