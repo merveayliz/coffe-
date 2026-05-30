@@ -2,21 +2,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 const scene = new THREE.Scene();
 const canvas = document.querySelector('.webgl');
-
 const sunLight = new THREE.DirectionalLight(0xffffff, 2);
 sunLight.position.set(-5, 5, 5); 
 sunLight.castShadow = true;
 scene.add(sunLight);
-
 const ambient = new THREE.AmbientLight(0xffffff, 0.6); 
 scene.add(ambient);
-
-
 const menuBtn = document.querySelector('.cta-btn');
 const menuOverlay = document.querySelector('#menu-overlay');
 const closeBtn = document.querySelector('.close-menu');
-
-
 const canvasLabel = document.createElement('canvas');
 const context = canvasLabel.getContext('2d');
 canvasLabel.width = 512;
@@ -30,8 +24,6 @@ context.fillText('COFFEE LAB', 256, 120);
 context.font = '30px Montserrat';
 context.fillText('coffee shop & roastery', 256, 180);
 const labelTexture = new THREE.CanvasTexture(canvasLabel);
-
-
 const cupMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.8 }); 
 const sleeveMaterial = new THREE.MeshStandardMaterial({ map: labelTexture, roughness: 1 }); 
 const lidMaterial = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.2 }); 
@@ -44,30 +36,22 @@ const beanMaterial = new THREE.MeshStandardMaterial({
 
 
 const cupGroup = new THREE.Group();
-
-
 const cupBody = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.3, 1.2, 32), cupMaterial);
 cupGroup.add(cupBody);
-
 const cupSleeve = new THREE.Mesh(new THREE.CylinderGeometry(0.51, 0.42, 0.6, 32), sleeveMaterial);
 cupSleeve.position.y = 0.05; 
 cupGroup.add(cupSleeve);
-
 const lidBase = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.52, 0.1, 32), lidMaterial);
 lidBase.position.y = 0.6;
 cupGroup.add(lidBase);
-
 const lidTop = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.52, 0.15, 32), lidMaterial);
 lidTop.position.y = 0.7;
 cupGroup.add(lidTop);
-
-
 const steamCount = 20;
 const steamGeometry = new THREE.BufferGeometry();
 const steamPositions = new Float32Array(steamCount * 3);
 for(let i = 0; i < steamCount * 3; i++) steamPositions[i] = (Math.random() - 0.5) * 0.2;
 steamGeometry.setAttribute('position', new THREE.BufferAttribute(steamPositions, 3));
-
 const steamMaterial = new THREE.PointsMaterial({ 
     color: 0xffffff, 
     size: 0.15, 
@@ -80,19 +64,13 @@ const steamMaterial = new THREE.PointsMaterial({
 const steam = new THREE.Points(steamGeometry, steamMaterial);
 steam.position.y = 0.8; 
 cupGroup.add(steam); 
-
-
-
 const dessertGroup = new THREE.Group();
 dessertGroup.position.set(0.9, -0.55, 0.4);
-
-
 const plateBottom = new THREE.Mesh(
     new THREE.CylinderGeometry(0.6, 0.55, 0.05, 32), 
     new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1, metalness: 0.2 }) 
 );
 dessertGroup.add(plateBottom);
-
 const plateRim = new THREE.Mesh(
     new THREE.TorusGeometry(0.55, 0.04, 16, 100), 
     new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1 })
